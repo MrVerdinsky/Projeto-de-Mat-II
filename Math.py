@@ -3,22 +3,33 @@ import string
 def main():
     printMenu()
     playerInput = input(">")
+
+    #Controls the Main Menu Loop
     while(playerInput != "0"):
+
+        #Enters the 1st Problem Function
         if playerInput == "1":
             FluidImersion()
             printMenu()
             playerInput = input(">")
+
+        #Enters the 2nd Problem Function
         elif playerInput ==  "2":
             SpringLength() 
             printMenu()
             playerInput = input(">")
+        
+        #Prints an error if user inputs wrong option
         else:
             playerInput = input(">")
             print("Input Unknown")
             printMenu()
+    
+    #Breaks the loop and closes the program
     print("Goodbye")
     quit()
-        
+
+#Prints the Main Menu
 def printMenu():
     print("Please choose a problem to solve\n")
     print("1. Flutuation")
@@ -39,6 +50,7 @@ def FluidImersion():
     result = FluidImersionMath(Gravity,fluidDensity, objectVolume, objectDensity, objectMass)
 
     while(run):
+        #Default values used in the first cycle of the problem
         print(f"Gravity set to: {Gravity}(m/s2)")
         print(f"Object Mass set to: {round(objectMass, 3)}(Kg)")
         print(f"Object Density set to: {round(objectDensity, 3)}(Kg/m3)")
@@ -55,13 +67,14 @@ def FluidImersion():
         if (playerInput[0] == "0"):
             run = False
              
-        
+        #Checks which value the user is changing and calculates affecting values
         elif (playerInput[0] == "set"):
             if (playerInput[1] == "gravity"):
                 Gravity = float(playerInput[2])
 
             elif (playerInput[1] == "density"):
                 objectDensity = float(playerInput[2])
+                objectMass = objectDensity*objectVolume
             
             elif (playerInput[1] == "mass"):
                 objectMass = float(playerInput[2])
@@ -150,6 +163,7 @@ def FluidImersionMath(g, fD,oD, oV, oM):
     #Calculates volume of the object that is submerged
     volumeSubmerged = gravityForce/(fD*g)
 
+    #Calculates the side of object that is submerged based on its submerged volume
     sideSubmerged = volumeSubmerged**(1/3)
 
     #Calculates Force of impulsion
@@ -169,6 +183,7 @@ def FluidImersionMath(g, fD,oD, oV, oM):
         return result
 
 
+#Prints a cheatsheet of the commands used to change values in the problems
 def Commands():
     print(" ________________________________________________________")
     print("|                          Commands                      |")
