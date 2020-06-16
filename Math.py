@@ -47,7 +47,7 @@ def FluidImersion():
     objectVolume = 0.269
     objectMass = objectDensity*objectVolume
     run = True
-    result = FluidImersionMath(Gravity,fluidDensity, objectVolume, objectDensity, objectMass)
+    result = FluidImersionMath(Gravity,fluidDensity, objectDensity, objectVolume, objectMass)
 
     while(run):
         #Default values used in the first cycle of the problem
@@ -93,7 +93,7 @@ def FluidImersion():
         else:
             print("Unknown Command\n")
 
-        result = FluidImersionMath(Gravity,fluidDensity, objectVolume, objectDensity, objectMass)
+        result = FluidImersionMath(Gravity,fluidDensity, objectDensity, objectVolume, objectMass)
 
 def SpringLength():
     Gravity = 9.81
@@ -163,24 +163,13 @@ def FluidImersionMath(g, fD,oD, oV, oM):
     #Calculates volume of the object that is submerged
     volumeSubmerged = gravityForce/(fD*g)
 
-    #Calculates the side of object that is submerged based on its submerged volume
-    sideSubmerged = volumeSubmerged**(1/3)
+    #Calculates the size of the submerged part of the object
+    floatLevel = volumeSubmerged/(objectSide*objectSide)
+    floatLevel = round(floatLevel, 3)
 
-    #Calculates Force of impulsion
-    fI = fD*g*oV
-
-    if (gravityForce > fI):
-        result = "Object sinks!"
-        return result
-
-    else:
-        #Calculates the size of the submerged part of the object
-        floatLevel = volumeSubmerged/(objectSide*objectSide)
-        floatLevel = round(floatLevel, 3)
-
-        objectCenterLevel = (sideSubmerged/2) + floatLevel
-        result = f"Object's Center of Mass is at:{round(objectCenterLevel, 3)}(m) from the surface\n"
-        return result
+    objectCenterLevel = (objectSide/2) - floatLevel
+    result = f"Object's Center of Mass is at: {round(objectCenterLevel, 3)}(m) from the surface\n"
+    return result
 
 
 #Prints a cheatsheet of the commands used to change values in the problems
