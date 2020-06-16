@@ -32,7 +32,7 @@ def main():
 #Prints the Main Menu
 def printMenu():
     print("Please choose a problem to solve\n")
-    print("1. Flutuation")
+    print("1. Flotation")
     print("2. Springs")
     print("0. Exit" )
 
@@ -177,7 +177,7 @@ def Commands():
     print(" ________________________________________________________")
     print("|                          Commands                      |")
     print("|________________________________________________________|")
-    print("|For the Flutuation problem, use set <paramater> <value>:|")
+    print("|For the Flotation problem, use set <paramater> <value>:|")
     print("""|"gravity" to change the gravity value                   |""")
     print("""|"density" to change the Object's Density                |""")
     print("""|"mass" to change the Object's Mass value                |""")
