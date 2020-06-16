@@ -141,27 +141,27 @@ def SpringLength():
         result = f"Spring would stretch at: {round(steadyStretch, 3)}"
 
         return result
-def SpringLengthMath(g, oM, r, k):
+def SpringLengthMath(gravity, objectMass, restLength, constant):
     # Calculates Gravitational Force
-    Fg = oM * -g
+    ForceGravity = objectMass * -gravity
 
     #According to Hook's Law F = -k(L - r), solve for L
     #Knowing that Fg + Fm = 0
 
     #Calculates the Springs Max Length
-    L = (Fg-(-k*-r))/-k
+    L = (ForceGravity-(-constant*-restLength))/-constant
     L = round(L, 3)
     return L
 
-def FluidImersionMath(g, fD,oD, oV, oM):
+def FluidImersionMath(gravity, fluidDensity,objectDensity, objectVolume, objectMass):
     #Calculates object side size
-    objectSide = oV**(1/3)
+    objectSide = objectVolume**(1/3)
 
     #Calculates Gravitational Force
-    gravityForce = oM * g
+    gravityForce = objectMass * gravity
 
     #Calculates volume of the object that is submerged
-    volumeSubmerged = gravityForce/(fD*g)
+    volumeSubmerged = gravityForce/(fluidDensity*gravity)
 
     #Calculates the size of the submerged part of the object
     floatLevel = volumeSubmerged/(objectSide*objectSide)
